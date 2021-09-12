@@ -7,3 +7,5 @@ numpy;
 matplotlib;
 librosa;
 sondfile.
+
+The total results on the blind test set of DNS3 is on https://github.com/Le-Xiaohuai-speech/DPCRN_DNS3_Results.
