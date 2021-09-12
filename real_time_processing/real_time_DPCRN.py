@@ -30,9 +30,9 @@ win = tf.constant(win,dtype = 'float32')
 
 input_norm = True
 
-#使用cpu计算
+# using cpu for inference
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-#overlapadd 函数
+# overlapadd function
 def overlapadd(frame,hop = 200):
     
     N_frame, L_frame = frame.shape
