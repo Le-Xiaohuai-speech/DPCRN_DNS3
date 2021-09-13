@@ -1,0 +1,6 @@
+tensorflow-gpu==1.15
+librosa
+soundfile
+tqdm
+numpy 
+matplotlib
