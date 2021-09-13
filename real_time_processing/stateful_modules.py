@@ -120,7 +120,7 @@ class DprnnBlock_stateful(keras.layers.Layer):
         return inter_out
 
 '''
-stateful Conv2D inherit from base classes Conv2D
+stateful Conv2D inherit from base class Conv2D
 '''
 class Conv2D_stateful(keras.layers.Conv2D):
     def __init__(self, filters, keranel_size, strides, padding,state_shape, *args, **kwargs):
@@ -144,7 +144,7 @@ class Conv2D_stateful(keras.layers.Conv2D):
 
 
 '''
-stateful Conv2DTranspose inherit from base classes Conv2DTranspose
+stateful Conv2DTranspose inherit from base class Conv2DTranspose
 '''
 class DeConv2D_stateful(keras.layers.Conv2DTranspose):
     
