@@ -1,5 +1,5 @@
 # DPCRN_DNS3
-Implementation of paper "DPCRN: Dual-Path Convolution Recurrent Network for Single Channel Speech Enhancement"
+Implementation of paper "DPCRN: Dual-Path Convolution Recurrent Network for Single Channel Speech Enhancement". This work got the third place in Deep Noise Suppression Challenge. 
 
 Requirements:
 tensorflow>=1.14,
