@@ -1,15 +1,52 @@
 # DPCRN_DNS3
-Implementation of paper "DPCRN: Dual-Path Convolution Recurrent Network for Single Channel Speech Enhancement". This work got the third place in Deep Noise Suppression Challenge. 
+*Created on Mon Oct 28 16:05:31 2021* </br>
+*@author: xiaohuai.le*
 
-Requirements:
-tensorflow>=1.14,
-numpy,
-matplotlib,
-librosa,
-sondfile.  
+This repository is the official implementation of paper "DPCRN: Dual-Path Convolution Recurrent Network for Single Channel Speech Enhancement". This work got the third place in Deep Noise Suppression Challenge.
+## Requirements
+tensorflow>=1.14, </br>
+numpy,            </br>
+matplotlib,       </br>
+librosa,          </br>
+sondfile.         </br>
 
-Note that the real-time inference can only run on the tensorflow=1.x. 
+## Datasets
+ We use [Deep Noise Suppression Dataset](https://github.com/microsoft/DNS-Challenge) and [OpenSLR26](http://www.openslr.org/26/), [OpenSLR28](http://www.openslr.org/28/) RIRs dataset in our training and validation stages. The directory structure of the dataset is shown below: </br>
+dataset </br>
+├── clean    </br>
+│    ├── audio1.wav</br>
+│    ├── audio2.wav</br>
+│    ├── audio3.wav</br>
+│    ...</br>
+├── noise</br>
+│    ├── audio1.wav</br>
+│    ├── audio2.wav</br>
+│    ├── audio3.wav</br>
+│    ...</br>
 
-The final results on the blind test set of DNS3 is available on https://github.com/Le-Xiaohuai-speech/DPCRN_DNS3_Results.
+RIR</br>
+├── rirs</br>
+│    ├── rir1.wav</br>
+│    ├── rir2.wav</br>
+│    ├── rir3.wav</br>
+│    ...</br>
 
-run python main.py to test the model on a single file.
+## Training and test
+Run the following code to training:
+```shell
+python main.py --mode train --cuda 0 --experimentName experiment_1
+```
+Run the following code to test the model on a single file:
+```shell
+python main.py --mode test --test_dir the_dir_of_noisy --output_dir the_dir_of_enhancement_results
+```
+## More samples 
+
+The final results on the blind test set of DNS3 is available on https://github.com/Le-Xiaohuai-speech/DPCRN_DNS3_Results. </br>
+
+## real-time inference
+**Note that the real-time inference can only run on the tensorflow=1.x.**
+Run real-time inference to calculate the time cost of a frame:</br>  
+```shell
+python ./real_time_processing/real_time_DPCRN.py
+```
