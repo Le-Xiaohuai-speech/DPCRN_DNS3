@@ -44,7 +44,7 @@ python main.py --mode test --test_dir the_dir_of_noisy --output_dir the_dir_of_e
 
 The final results on the blind test set of DNS3 is available on https://github.com/Le-Xiaohuai-speech/DPCRN_DNS3_Results. </br>
 
-## real-time inference
+## Real-time inference
 **Note that the real-time inference can only run on the tensorflow=1.x.**
 Run real-time inference to calculate the time cost of a frame:</br>  
 ```shell
