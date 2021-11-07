@@ -159,6 +159,12 @@ class data_generator():
             batch_noisy = np.zeros([batch_size,self.points_per_sample],dtype = np.float32)
             
             for i in range(batch_size):
+                # random amplitude gain
+                gain = np.random.normal(loc=-5,scale=10)
+                gain = 10**(gain/10)
+                gain = min(gain,3)
+                gain = max(gain,0.01)
+                
                 SNR = np.random.uniform(-5,5)
                 sample_num = batch_num*batch_size + i
                 #get the path of clean audio
@@ -182,8 +188,8 @@ class data_generator():
                         
                 clean_s,noise_s,noisy_s,_ = mk_mixture(clean_s,noise_s,SNR,eps = 1e-8)
 
-                batch_clean[i,:] = clean_s
-                batch_noisy[i,:] = noisy_s
+                batch_clean[i,:] = clean_s * gain
+                batch_noisy[i,:] = noisy_s * gain
 
             batch_num += 1
 
