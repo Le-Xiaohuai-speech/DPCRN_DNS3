@@ -52,3 +52,12 @@ python ./real_time_processing/real_time_DPCRN.py
 ```
 ## Tensorflow Lite quantization and pruning
 
+##Citations
+@inproceedings{le21b_interspeech,
+  author={Xiaohuai Le and Hongsheng Chen and Kai Chen and Jing Lu},
+  title={{DPCRN: Dual-Path Convolution Recurrent Network for Single Channel Speech Enhancement}},
+  year=2021,
+  booktitle={Proc. Interspeech 2021},
+  pages={2811--2815},
+  doi={10.21437/Interspeech.2021-296}
+}
