@@ -50,3 +50,5 @@ Run real-time inference to calculate the time cost of a frame:</br>
 ```shell
 python ./real_time_processing/real_time_DPCRN.py
 ```
+## Tensorflow Lite quantization and pruning
+
