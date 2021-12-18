@@ -116,6 +116,25 @@ class DPCRN_model():
         
         return loss_real + loss_imag + loss_mag
     
+    def spectrum_loss_phasen(self, s_hat,s,gamma = 0.3):
+        
+        true_real,true_imag = self.stftLayer(s, mode='real_imag')
+        hat_real,hat_imag = self.stftLayer(s_hat, mode='real_imag')
+
+        true_mag = tf.sqrt(true_real**2 + true_imag**2+1e-9)
+        hat_mag = tf.sqrt(hat_real**2 + hat_imag**2+1e-9)
+
+        true_real_cprs = (true_real / true_mag )*true_mag**gamma
+        true_imag_cprs = (true_imag / true_mag )*true_mag**gamma
+        hat_real_cprs = (hat_real / hat_mag )* hat_mag**gamma
+        hat_imag_cprs = (hat_imag / hat_mag )* hat_mag**gamma
+
+        loss_mag = tf.reduce_mean((hat_mag**gamma - true_mag**gamma)**2,)         
+        loss_real = tf.reduce_mean((hat_real_cprs - true_real_cprs)**2,)
+        loss_imag = tf.reduce_mean((hat_imag_cprs - true_imag_cprs)**2,)
+
+        return 0.7 * loss_mag + 0.3 * ( loss_imag + loss_real ) 
+    
     def lossWrapper(self):
         '''
         A wrapper function which returns the loss function. This is done to
