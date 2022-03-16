@@ -12,7 +12,7 @@ import copy
 import soundfile as sf
 import librosa
 
-def enhancement_stateful(noisy_f, model_stateful = './dpcrn_stateful_model.tflite', output_f = './enhance_s.wav', if_plot = True, gain =1):
+def enhancement_stateful(noisy_f, model_stateful = './dpcrn_stateful_model.tflite', output_f = './enhance_s.wav', plot = True, gain =1):
 
     noisy_s = sf.read(noisy_f,dtype = 'float32')[0] * gain
 
@@ -69,7 +69,7 @@ def enhancement_stateful(noisy_f, model_stateful = './dpcrn_stateful_model.tflit
         t.append(end-begin)
     
     print('Total {} frames, inference time per frame:{}s'.format(N_frame,np.mean(t)))
-    if if_plot:
+    if plot:
        
         spec_n = librosa.stft(noisy_s,400,200,center = False)
         spec_e = librosa.stft(enh_s, 400,200,center = False)
