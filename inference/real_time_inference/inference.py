@@ -68,7 +68,7 @@ def enhancement_stateful(noisy_f, model_stateful = './dpcrn_stateful_model.tflit
         enh_s[i*256 : i*256 + 512] += enhanced
         t.append(end-begin)
     
-    print(np.mean(t))
+    print('Total {} frames, inference time per frame:{}s'.format(N_frame,np.mean(t)))
     if if_plot:
        
         spec_n = librosa.stft(noisy_s,400,200,center = False)
