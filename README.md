@@ -51,8 +51,15 @@ Run real-time inference to calculate the time cost of a frame:</br>
 python ./real_time_processing/real_time_DPCRN.py
 ```
 ## Tensorflow Lite quantization and pruning
-A smaller but stronger model will be uploaded for tensorflow lite quantization.
-
+The TFLite file of a smaller dpcrn model is uploaded.
+Enhance a single wav file:
+```shell
+python ./inference/real_time_inference/inference.py
+```
+Streaming recording and enhancement: 
+```shell
+python ./inference/real_time_inference/recording.py
+```
 ## Citations
 ```shell
 @inproceedings{le21b_interspeech,
