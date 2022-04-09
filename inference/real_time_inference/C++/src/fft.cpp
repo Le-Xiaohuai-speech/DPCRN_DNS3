@@ -4,7 +4,6 @@
 #include <math.h>
 #include <cstdio>
 
-
 static void make_sintbl(int n, float* sintbl)
 {
 	int i, n2, n4, n8;
