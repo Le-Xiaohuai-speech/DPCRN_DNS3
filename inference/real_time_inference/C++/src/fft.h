@@ -10,7 +10,7 @@
 #include <math.h>
 #include <cstdio>
 
-#define M_PI 3.141592653589793238462643383279502
+// #define M_PI 3.141592653589793238462643383279502
 
 static void make_sintbl(int n, float* sintbl);
 
