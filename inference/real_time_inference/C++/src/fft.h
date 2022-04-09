@@ -14,9 +14,9 @@
 #define M_PI 3.141592653589793238462643383279502
 
 
-static void make_sintbl(int n, float* sintbl)
+static void make_sintbl(int n, float* sintbl);
 
-static void make_bitrev(int n, int* bitrev)
+static void make_bitrev(int n, int* bitrev);
 
 
 /*
@@ -25,7 +25,7 @@ static void make_bitrev(int n, int* bitrev)
 * @y: imaginary part
 * @n: length of fft, negative for inverse FFT
 */
-int fft(float* x, float* y, int n)
+int fft(float* x, float* y, int n);
 
 /*
 * @brief: Short Time Fourier Transform
@@ -37,7 +37,7 @@ int fft(float* x, float* y, int n)
 * @window_length
 * @hop_length
 */
-void STFT(float *s, float *spec, float *win, int signal_length, int fft_length, int window_length, int hop_length)
+void STFT(float *s, float *spec, float *win, int signal_length, int fft_length, int window_length, int hop_length);
  
 /*
 * @brief: inverse Short Time Fourier Transform
@@ -50,7 +50,7 @@ void STFT(float *s, float *spec, float *win, int signal_length, int fft_length, 
 * @window_length
 * @hop_length
 */
-void iSTFT(float *s, float *spec, float *win, int N_frame, int signal_length, int fft_length, int window_length, int hop_length)
+void iSTFT(float *s, float *spec, float *win, int N_frame, int signal_length, int fft_length, int window_length, int hop_length);
 
 #endif
 
