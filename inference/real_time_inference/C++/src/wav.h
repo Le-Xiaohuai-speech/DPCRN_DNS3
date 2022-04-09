@@ -8,7 +8,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
-  
+
 struct wav_info {
    uint_fast16_t num_channels;      /* 1 for mono, 2 for stereo, etc. */
    uint_fast16_t bits_per_sample;   /* 16 for CD, 24 for high-res, etc. */
