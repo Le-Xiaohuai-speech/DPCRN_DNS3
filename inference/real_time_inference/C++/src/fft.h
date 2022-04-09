@@ -1,4 +1,4 @@
-/*
+/* @breif Fast Fourier Transform
  * @Author: Xiaohuaile
  * @Date: 2022-4-9
  * @Last Modified by: Xiaohuaile
@@ -10,14 +10,11 @@
 #include <math.h>
 #include <cstdio>
 
-//Fast Fourier Transform
 #define M_PI 3.141592653589793238462643383279502
-
 
 static void make_sintbl(int n, float* sintbl);
 
 static void make_bitrev(int n, int* bitrev);
-
 
 /*
 * @breif Fast Fourier Transform
