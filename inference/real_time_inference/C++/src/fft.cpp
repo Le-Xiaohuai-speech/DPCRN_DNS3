@@ -1,8 +1,4 @@
 #include "fft.h"
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
-#include <cstdio>
 
 static void make_sintbl(int n, float* sintbl)
 {
