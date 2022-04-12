@@ -1,10 +1,12 @@
-
 #include "wav.h"
 #include <stdlib.h>
-  
-void read_wav_info(struct wav_info *w, FILE *fp) {
+#include <iostream>
+#include <fstream>
+
+void read_wav_info(struct wav_info *w, wav_data *wdata, FILE *fp) {
    // To be read from *fp
    uint32_t data_size;
+   uint32_t size;
    uint32_t byte_rate;
    uint16_t block_align;
 
@@ -75,13 +77,14 @@ void read_wav_info(struct wav_info *w, FILE *fp) {
       uint32_t chunk_size;
       fread(x,1,4,fp);
       chunk_size = x[0] | (x[1] << 8) | (x[2] << 16) | (x[3] << 24);
+      printf("chunk size=%d",chunk_size);
       // Skip over this subchunk and keep looking for "fmt " subchunk
       if(fseek(fp,chunk_size,SEEK_CUR)) {
          fprintf(stderr,"Error: Couldn't find fmt  subchunk in file.\n");
          exit(EXIT_FAILURE);
       }
    }
-
+   
    // Now look for the "data" subchunk of this RIFF file...
    while(1) {
       fread(x,1,4,fp);
@@ -104,10 +107,14 @@ void read_wav_info(struct wav_info *w, FILE *fp) {
          exit(EXIT_FAILURE);
       }
    }
-
    // Determine num_samples
+   printf("bit size: %d\n",data_size);
    w->num_samples = data_size/((w->num_channels)*(w->bits_per_sample)/8);
-
+   wdata->size = w->num_samples;
+   
+   wdata->data=(int16_t*)malloc(data_size);
+	fread(wdata->data, sizeof(int16_t), wdata->size, fp);
+   
    // Do some error checking:
    if(block_align != (w->num_channels)*(w->bits_per_sample)/8) {
       fprintf(stderr,"Error: block_align, num_channels, bits_per_sample mismatch in WAVE header.\n");
@@ -201,15 +208,25 @@ void print_wav_info(const struct wav_info *w) {
    else printf("Duration: %i + %i/%i s\n",duration,r,(int) w->sample_rate);
 }
 
-void write_sample(const struct wav_info* w, FILE* fp, const int_fast32_t* sample) {
-   // We'll assume w->bits_per_sample is divisible by 8, otherwise
-   // one should do bytes_per_sample++ and make sure
-   // the last (w->bits_per_sample % 8) bits of each sample[i] are zero
-   int b = w->bits_per_sample/8; // bytes per sample
-   uint8_t x[b];
-   for(int i=0; i<w->num_channels; i++) {
-      // populate x with sample[i] in Little Endian format, then write it
-      for(int j=0; j<b; j++) x[j] = (sample[i] >> (8*j)) & 0xFF;
-      fwrite(x,1,b,fp);
-   }
+void write_file_wav(const struct wav_info* w, FILE* fp, const int16_t* sample) {  
+   write_wav_hdr(w, fp);
+   int b = w->bits_per_sample/8;
+   fwrite(sample, b, w->num_samples, fp);
 }
+
+void read_file_bin_data(const char *file, void *data, size_t byte_length) {
+  std::ifstream in(file, std::ios::in | std::ios::binary);
+  in.read((char *) data, byte_length);
+  in.close();
+}
+
+void write_file_bin_data(const char *file, void *data, size_t byte_length) {
+  std::ofstream out(file, std::ios::out | std::ios::binary);
+  out.write((char *) data, byte_length);
+  out.close();
+}
+
+void free_source(wav_data* wdata) {
+	free(wdata->data);
+}
+
