@@ -113,7 +113,7 @@ void read_wav_info(struct wav_info *w, wav_data *wdata, FILE *fp) {
    wdata->size = w->num_samples;
    
    wdata->data=(int16_t*)malloc(data_size);
-	fread(wdata->data, sizeof(int16_t), wdata->size, fp);
+   fread(wdata->data, sizeof(int16_t), wdata->size, fp);
    
    // Do some error checking:
    if(block_align != (w->num_channels)*(w->bits_per_sample)/8) {
