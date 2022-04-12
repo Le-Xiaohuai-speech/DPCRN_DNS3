@@ -38,12 +38,12 @@ int main(int, char**) {
     // test STFT
     int fft_len = 512;
     int hop_len = 256;
-	int N_frame = wdata.size / hop_len + 1;
+    int N_frame = wdata.size / hop_len + 1;
     float win[512];
     float *s, *spec;
-	std::string win_f = "../bin/win.bin";
+    std::string win_f = "../bin/win.bin";
     s = new float[wdata.size];
-	spec = new float[N_frame * fft_len * 2];
+    spec = new float[N_frame * fft_len * 2];
     std::cout << "frame length: " << fft_len << "\n"
               << "hop length: " << hop_len << "\n"
               << "frame number: " << N_frame << std::endl;
@@ -51,9 +51,9 @@ int main(int, char**) {
     read_file_bin_data(win_f.c_str(), win, 512*4);
     // STFT
     for (int i=0; i < wdata.size; i++){
-		s[i] = float(wdata.data[i]) / 32767.0;
-	}
-	STFT(s, spec, win, wdata.size, fft_len, fft_len, hop_len);
+	s[i] = float(wdata.data[i]) / 32767.0;
+    }
+    STFT(s, spec, win, wdata.size, fft_len, fft_len, hop_len);
     /*
     check the output in python by:
     x = np.fromfile('../bin/stft.bin', dtype=np.float32) 
@@ -64,9 +64,8 @@ int main(int, char**) {
     iSTFT(s, spec, win, N_frame, wdata.size, fft_len, fft_len, hop_len);
 
     for (int i=0; i < wdata.size; i++){
-		wdata.data[i] = int16_t(32767.0 * s[i]);
-	}
-    
+	wdata.data[i] = int16_t(32767.0 * s[i]);
+    }
     // write the signal as a .pcm file
     write_file_bin_data("./output_s.pcm", wdata.data, wdata.size * info.bits_per_sample / 8);
     // write the signal as a .wav file
