@@ -39,7 +39,7 @@ int main(int, char**) {
     int fft_len = 512;
     int hop_len = 256;
     int N_frame = wdata.size / hop_len + 1;
-    float win[512];
+    float win[fft_len];
     float *s, *spec;
     std::string win_f = "../bin/win.bin";
     s = new float[wdata.size];
@@ -48,7 +48,7 @@ int main(int, char**) {
               << "hop length: " << hop_len << "\n"
               << "frame number: " << N_frame << std::endl;
     // read window
-    read_file_bin_data(win_f.c_str(), win, 512*4);
+    read_file_bin_data(win_f.c_str(), win, fft_len * 4);
     // STFT
     for (int i=0; i < wdata.size; i++){
 	s[i] = float(wdata.data[i]) / 32767.0;
