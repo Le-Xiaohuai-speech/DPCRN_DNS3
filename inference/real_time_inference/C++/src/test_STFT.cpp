@@ -3,7 +3,7 @@
 #include "wav.h"
 #include "fft.h"
 /*
-run g++ ./test.cpp ./wav.cpp ./fft.cpp -o read_wav
+run g++ ./test_STFT.cpp ./wav.cpp ./fft.cpp -o read_wav
 */
 
 int main(int, char**) {
