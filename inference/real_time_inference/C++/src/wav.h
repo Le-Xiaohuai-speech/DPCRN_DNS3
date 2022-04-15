@@ -11,14 +11,14 @@
 
 // wav data
 struct wav_data{
-	public:
-		int16_t* data;
-		int size;
+    public:
+	int16_t* data;
+	int size;
 
-		wav_data(){
-			data=NULL;
-			size=0;
-		}	
+    wav_data(){
+	data=NULL;
+	size=0;
+	}	
 };
 // wav header info 
 struct wav_info {
