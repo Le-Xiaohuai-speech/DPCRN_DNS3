@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(run_demo VERSION 0.1.0)
+# cross compiler for arm/aarch64 
+#set(CMAKE_CXX_COMPILER "/opt/gcc-linaro-6.5.0-2018.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-g++")
 
 enable_testing()
 # onnxruntime dir
