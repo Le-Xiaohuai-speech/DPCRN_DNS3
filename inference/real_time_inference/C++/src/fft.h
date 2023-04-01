@@ -12,10 +12,6 @@
 
 // #define M_PI 3.141592653589793238462643383279502
 
-static void make_sintbl(int n, float* sintbl);
-
-static void make_bitrev(int n, int* bitrev);
-
 /*
 * @breif Fast Fourier Transform
 * @x: real part
