@@ -60,6 +60,9 @@ Streaming recording and enhancement:
 ```shell
 python ./inference/real_time_inference/recording.py
 ```
+## TensorRT deployment
+https://github.com/Xiaobin-Rong/TRT-SE?tab=readme-ov-file
+
 ## Citations
 ```shell
 @inproceedings{le21b_interspeech,
